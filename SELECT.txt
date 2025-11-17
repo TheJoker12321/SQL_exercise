@@ -1,0 +1,16 @@
+1. SELECT * FROM customers
+122 שורות
+2. SELECT firstName, lastName FROM employees
+3. SELECT employeeNumber, firstName, jobTitle FROM employees
+4. SELECT productCode, productName FROM products
+5. SELECT officeCode FROM offices
+6. SELECT * FROM orders
+7. SELECT customerNumber FROM payments
+8. SELECT orderNumber, orderDate FROM orders
+9. SELECT * FROM productlines
+10. SELECT checkNumber, amount FROM payments
+11. SELECT quantityOrdered, priceEach FROM orderdetails
+12) SELECT * from products
+13)SELECT productline from productlines
+14) SELECT phone from offices
+15) SELECT customername from customers
