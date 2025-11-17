@@ -1,0 +1,42 @@
+1)SELECT `עיר`,`חברה`FROM cell_towers
+2)SELECT `סוג אתר`, `כתובת האתר`, `עיר` FROM cell_towers;
+3)SELECT DISTINCT `חברה` FROM cell_towers;2
+4)SELECT DISTINCT `עיר` FROM cell_towers;705
+5)SELECT DISTINCT `סוג אתר` FROM cell_towers;
+6)SELECT `טכנולוגיית שידור` FROM cell_towers;
+7)SELECT `היתר קרינה` FROM cell_towers;
+8)SELECT `רשות מקומית` FROM cell_towers;
+9)SELECT `ID`, `חברה` FROM cell_towers;
+10)SELECT `עיר`, `עוצמה מרבית תיאורטית בµW לסמר` FROM cell_towers;
+11)SELECT `עיר`, `תוצאה מירבית ב% ביחס לסף הבריאות` FROM cell_towers;
+12)SELECT * FROM cell_towers;
+13)SELECT `ID`, `כתובת האתר`, `סוג אתר` FROM cell_towers;
+14)SELECT `חברה`, `תאריך היתר הפעלה` FROM cell_towers;
+15)SELECT `חברה`, `בדיקה תקופתית אחרונה` FROM cell_towers;
+16)SELECT `עיר`, `רשות מקומית` FROM cell_towers;
+17)SELECT `סוג אתר`, `טכנולוגיית שידור` FROM cell_towers;
+18)SELECT `ID`, `תאור נקודה בה התקבלה תוצאה מירבית` FROM cell_towers;
+19)SELECT `ID`, `תוצאה מירבית ב% ביחס לסף הבריאות` FROM cell_towers;
+20)SELECT * FROM cell_towers WHERE `עיר` <> 'תל אביב';
+
+
+1)SELECT * FROM cell_towers WHERE `עיר` = 'תל אביב';
+2)SELECT * FROM cell_towers WHERE `חברה` = 'פלאפון';
+3)SELECT * FROM cell_towers WHERE `סוג אתר` = 'תורן קרקעי';
+4)SELECT * FROM cell_towers WHERE `היתר קרינה` = 'יש היתר';
+5)SELECT * FROM cell_towers WHERE `היתר קרינה` = 'אין היתר';
+6)SELECT * FROM cell_towers WHERE `טכנולוגיית שידור` LIKE '%5G%';
+7)SELECT * FROM cell_towers WHERE `עיר` LIKE 'תל%';
+8)SELECT * FROM cell_towers WHERE `עוצמה מרבית תיאורטית בµW לסמר` > 50;
+9)SELECT * FROM cell_towers WHERE `עוצמה מרבית תיאורטית בµW לסמר` < 5;
+10)SELECT * FROM cell_towers WHERE `תוצאה מירבית ב% ביחס לסף הבריאות` > 10;
+11)SELECT * FROM cell_towers WHERE `תוצאה מירבית ב% ביחס לסף הבריאות` = 0;
+12)SELECT * FROM cell_towers WHERE `חברה` = 'פרטנר' AND `עיר` = 'תל אביב';
+13)SELECT * FROM cell_towers WHERE `סוג אתר` <> 'תורן קרקעי';
+14)SELECT * FROM cell_towers WHERE `תאריך היתר הקמה` > '2020-01-01';
+15)SELECT * FROM cell_towers WHERE `רשות מקומית` = 'ירושלים';
+16)SELECT * FROM cell_towers WHERE `כתובת האתר` LIKE '%רחוב%';
+17)SELECT * FROM cell_towers WHERE `טכנולוגיית שידור` LIKE '%3G%' OR `טכנולוגיית שידור` LIKE '%4G%';
+18)SELECT * FROM cell_towers WHERE `חברה` <> 'סלקום';
+19)SELECT * FROM cell_towers WHERE `עיר` IS NOT NULL;
+20)SELECT * FROM cell_towers WHERE `תאור נקודה בה התקבלה תוצאה מירבית` LIKE '%קרקע%';
