@@ -1,0 +1,24 @@
+1.
+a. ClassId
+b. 1:m
+
+2. 
+a. CourseId in classes table
+b. 1:1 Because in each class there is one and different course
+
+3.
+a. no
+b. The role is to coordinate between the lecturers and the classes because it's many to          many. So this is the table that connects them. 
+c. m:m the same of question 2
+
+4.
+a. Tighten the connection between the tables Courses, Classes, and Students
+b. First, I go to the courses table and check what the ID of Full Stack is, then I check in the classes which class ID teaches Full Stack, and I see that it's 1, so I go to the students and look for the students who are in the class with ID 1 and filter
+
+5.
+a. Checks between the tables of lecturers' teaching hours and classrooms
+b. I check the ID of the classrooms in the South building, then I go to the class schedule table and check which ID the lecturer is teaching there, then I go to the lecturers and check the ID to see which lecturers are teaching there.
+
+6.
+a. Checks between the tables of students, study hours, and lecturers
+b. Goes to the students table, looks for the specific student, then checks the ID of the class they are attending. Then goes to the class hours table and checks, in the class ID column where the student is enrolled, under the afternoon lecturers column, what the ID of their lecturer is, and then goes to the lecturers table and checks the name of the lecturer with that ID.
