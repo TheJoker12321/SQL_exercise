@@ -1,0 +1,257 @@
+Phase1
+
+CREATE DATABASE Global_Music_Streaming;
+
+1.
+
+CREATE TABLE Artists(
+    artist_id INT PRIMARY KEY,
+    name TEXT NOT NULL,
+    country TEXT,
+    formation_year INT
+);
+
+CREATE TABLE Albums(
+    album_id INT PRIMARY KEY,
+    title TEXT NOT NULL,
+    release_date Date,
+    artist_id INT,
+    FOREIGN KEY (artist_id) REFERENCES Artists(artist_id)
+);
+
+CREATE TABLE Songs(
+    song_id INT PRIMARY KEY,
+    title TEXT NOT NULL,
+    duration_seconds INT CHECK(duration_seconds > 0),
+    album_id INT,
+    FOREIGN KEY (album_id) REFERENCES Albums(album_id)
+);
+
+CREATE TABLE Users(
+    user_id INT PRIMARY KEY,
+    username TEXT UNIQUE NOT NULL,
+    email TEXT NOT NULL,
+    join_date DATE
+);
+
+CREATE TABLE Playlists(
+    playlist_id INT PRIMARY KEY,
+    user_id INT,
+    name TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+2.
+
+CREATE TABLE Playlist_Songs(
+    id INT PRIMARY KEY,
+    song_id INT,
+    playlist_id INT,
+    FOREIGN KEY (song_id) REFERENCES songs(song_id),
+    FOREIGN KEY (playlist_id) REFERENCES playlists(playlist_id)
+);
+
+Phase2
+
+1.
+
+INSERT INTO Artists(artist_id, name, country, formation_year)
+VALUES
+(101, 'The Lumineers', 'USA', 2005),
+(102, 'Dua Lipa', 'UK', 2013),
+(103, 'A.R. Rahman', 'India', 1992),
+(104, 'No Album Artist', 'Canada', 2018),
+(105, 'Adele', 'UK', 2006),
+(106, 'Queen', 'UK', 1970);
+
+2.
+
+INSERT INTO Albums(album_id, title, release_date, artist_id) VALUES 
+(201, 'Cleopatra', '2016-04-08', 101), 
+(202, 'Future Nostalgia', '2020-03-27', 102), 
+(203, 'Rahman Hits Vol. 1', '2005-01-01', 103), 
+(204, 'Album With No Songs', '2022-11-15', 101),  
+(205, '21', '2011-01-24', 105), 
+(206, 'A Day at the Races', '1976-12-10', 106), 
+(207, 'Empty Album', '2023-01-01', 105); 
+
+3.
+
+INSERT INTO Songs(song_id, title, duration_seconds, album_id) VALUES 
+(301, 'Ophelia', 160, 201), 
+(302, 'Cleopatra', 240, 201), 
+(303, 'Ho Hey', 163, 201), 
+(304, 'Dont Start Now', 183, 202), 
+(305, 'Levitating', 203, 202), 
+(306, 'New Rules', 200, 202), 
+(307, 'Jai Ho', 305, 203), 
+(308, 'Love in the Time of Madness', 255, 203), 
+(309, 'Big Love', 220, 201), 
+(310, 'One Day', 155, 202), 
+(311, 'Bohemian Rhapsody', 354, 206), 
+(312, 'Someone Like You', 285, 205), 
+(313, 'Set Fire to the Rain', 241, 205), 
+(314, 'Another one Bites the Dust', 214, 206), 
+(315, 'Crazy Little Thing Called Love', 160, 206); 
+
+4.
+
+INSERT INTO Users(user_id, username, email, join_date) VALUES 
+(401, 'MusicLover77', 'mlover@example.com', '2024-01-10'), 
+(402, 'Chill_Vibes', 'chill@example.com', '2023-05-20'), 
+(403, 'SQL_Master', 'sqlmaster@example.com', '2024-10-15'); 
+
+5.
+
+INSERT INTO Playlists (playlist_id, user_id, name) VALUES 
+(501, 401, 'Acoustic Roadtrip'), 
+(502, 402, 'Morning Energy'), 
+(503, 401, 'Bollywood Grooves'), 
+(504, 403, 'Rock Classics'); 
+
+6.
+
+INSERT INTO Playlist_Songs (id, playlist_id, song_id) VALUES 
+(1, 501, 301), 
+(2, 501, 302), 
+(3, 501, 309), 
+(4, 502, 304), 
+(5, 502, 305), 
+(6, 502, 306), 
+(7, 502, 312),  
+(8, 503, 307), 
+(9, 503, 308), 
+(10, 503, 313), 
+(11, 504, 311), 
+(12, 504, 314);  
+
+Phase3
+
+1.
+
+Done in the previous section
+
+2.
+
+ALTER TABLE artists
+ADD COLUMN followers_count INT
+
+3.
+
+UPDATE artists
+SET followers_count = 1500000
+WHERE artist_id = 103
+
+UPDATE artists
+SET followers_count = 10000
+WHERE artist_id != 103
+
+UPDATE users
+SET username = 'John Dou'
+WHERE user_id = 401
+
+4.
+
+DELETE FROM Songs 
+WHERE album_id = 204;
+
+DELETE FROM Albums 
+WHERE album_id = 204;
+
+Phase4
+
+1.
+
+SELECT title, duration_seconds
+FROM songs
+
+2.
+
+SELECT artist_id AS ID,name AS Artist_Name
+FROM artists
+
+3.
+
+SELECT formation_year
+FROM artists
+WHERE formation_year < 2000
+
+4.
+
+SELECT * 
+FROM songs
+WHERE duration_seconds > 200 OR title LIKE '%Love%'
+
+SELECT * 
+FROM artists
+WHERE country NOT IN('USA') AND followers_count > 1000000
+
+5.
+
+SELECT * 
+FROM songs
+WHERE duration_seconds BETWEEN 150 AND 250
+
+SELECT * 
+FROM users
+WHERE username IN('Chill_Vibes', 'MusicLover77', 'SQL_Master')
+
+6.
+
+SELECT COUNT(*)
+FROM songs
+
+SELECT title, MAX(duration_seconds)
+FROM songs
+
+SELECT title, SUM(duration_seconds)
+FROM songs
+WHERE album_id = 201
+
+SELECT AVG(duration_seconds)
+FROM songs
+
+Phase5
+
+1.
+
+SELECT artists.name, albums.title
+FROM artists
+INNER JOIN albums
+ON artists.artist_id = albums.artist_id
+
+2.
+
+SELECT playlists.name, songs.title
+FROM playlist_songs
+INNER JOIN songs
+ON playlist_songs.song_id = songs.song_id
+INNER JOIN playlists
+ON playlist_songs.playlist_id = playlists.playlist_id
+
+3.
+
+SELECT albums.title, songs.title
+FROM albums
+LEFT JOIN songs
+ON albums.album_id = songs.album_id
+WHERE songs.album_id IS NULL
+
+4.
+
+SELECT artists.name, albums.title
+FROM artists
+LEFT JOIN albums
+ON artists.artist_id = albums.artist_id
+WHERE albums.artist_id IS NULL
+
+5.
+
+SELECT artists.name AS artists_name, albums.title AS albums_title, songs.title AS songs_title
+FROM albums
+INNER JOIN artists
+ON albums.artist_id = artists.artist_id
+INNER JOIN songs
+ON albums.album_id = songs.album_id
+WHERE artists.country = 'UK' AND songs.duration_seconds > 300
+
